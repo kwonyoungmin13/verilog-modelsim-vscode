@@ -1,0 +1,12 @@
+.modelsim/
+/modelsim.local.json
+transcript
+modelsim.ini
+work/
+*.wlf
+*.vcd
+*.vstf
+
+# Local upload packages
+/_github-upload/
+/verilog-modelsim-vscode.zip

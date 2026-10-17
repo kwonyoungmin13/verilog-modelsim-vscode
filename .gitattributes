@@ -1,0 +1,9 @@
+* text=auto
+*.v text eol=lf
+*.sv text eol=lf
+*.vh text eol=lf
+*.svh text eol=lf
+*.ps1 text eol=lf
+*.json text eol=lf
+*.md text eol=lf
+*.do text eol=lf
