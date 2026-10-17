@@ -1,0 +1,82 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "ModelSim: Setup",
+      "detail": "ModelSim 설치 경로를 찾고 이 PC의 설정과 Verilog 확장을 준비합니다.",
+      "type": "process",
+      "command": "powershell.exe",
+      "args": [
+        "-NoProfile", "-ExecutionPolicy", "Bypass",
+        "-File", "${workspaceFolder}/scripts/setup-modelsim.ps1"
+      ],
+      "options": { "cwd": "${workspaceFolder}" },
+      "presentation": { "reveal": "always", "panel": "shared", "clear": true },
+      "problemMatcher": []
+    },
+    {
+      "label": "ModelSim: Build and Show Waveform",
+      "detail": "현재 Verilog 파일 폴더를 컴파일하고 테스트벤치 파형을 엽니다 (Ctrl+Shift+B).",
+      "type": "process",
+      "command": "powershell.exe",
+      "args": [
+        "-NoProfile", "-ExecutionPolicy", "Bypass",
+        "-File", "${workspaceFolder}/scripts/modelsim.ps1",
+        "-SourcePath", "${file}", "-Action", "Gui"
+      ],
+      "options": { "cwd": "${workspaceFolder}" },
+      "group": { "kind": "build", "isDefault": true },
+      "presentation": { "reveal": "always", "panel": "shared", "clear": true },
+      "problemMatcher": {
+        "owner": "modelsim",
+        "fileLocation": "absolute",
+        "pattern": {
+          "regexp": "^\\*\\* (Error|Warning)(?: \\(suppressible\\))?: (?:\\(vlog-\\d+\\) )?(.+?)\\((\\d+)\\): (.*)$",
+          "severity": 1, "file": 2, "line": 3, "message": 4
+        }
+      }
+    },
+    {
+      "label": "ModelSim: Check Simulation (Terminal)",
+      "detail": "GUI 없이 테스트벤치를 실행하고 결과와 WLF 파형 파일을 저장합니다.",
+      "type": "process",
+      "command": "powershell.exe",
+      "args": [
+        "-NoProfile", "-ExecutionPolicy", "Bypass",
+        "-File", "${workspaceFolder}/scripts/modelsim.ps1",
+        "-SourcePath", "${file}", "-Action", "Batch"
+      ],
+      "options": { "cwd": "${workspaceFolder}" },
+      "group": "test",
+      "presentation": { "reveal": "always", "panel": "shared", "clear": true },
+      "problemMatcher": {
+        "owner": "modelsim",
+        "fileLocation": "absolute",
+        "pattern": {
+          "regexp": "^\\*\\* (Error|Warning)(?: \\(suppressible\\))?: (?:\\(vlog-\\d+\\) )?(.+?)\\((\\d+)\\): (.*)$",
+          "severity": 1, "file": 2, "line": 3, "message": 4
+        }
+      }
+    },
+    {
+      "label": "ModelSim: Compile Only",
+      "type": "process",
+      "command": "powershell.exe",
+      "args": [
+        "-NoProfile", "-ExecutionPolicy", "Bypass",
+        "-File", "${workspaceFolder}/scripts/modelsim.ps1",
+        "-SourcePath", "${file}", "-Action", "Compile"
+      ],
+      "options": { "cwd": "${workspaceFolder}" },
+      "presentation": { "reveal": "always", "panel": "shared", "clear": true },
+      "problemMatcher": {
+        "owner": "modelsim",
+        "fileLocation": "absolute",
+        "pattern": {
+          "regexp": "^\\*\\* (Error|Warning)(?: \\(suppressible\\))?: (?:\\(vlog-\\d+\\) )?(.+?)\\((\\d+)\\): (.*)$",
+          "severity": 1, "file": 2, "line": 3, "message": 4
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "files.associations": {
+    "*.v": "verilog",
+    "*.vh": "verilog",
+    "*.sv": "systemverilog",
+    "*.svh": "systemverilog",
+    "*.do": "tcl"
+  },
+  "files.encoding": "utf8",
+  "files.eol": "\n",
+  "editor.tabSize": 4,
+  "editor.insertSpaces": true,
+  "verilog.ctags.enabled": false,
+  "task.saveBeforeRun": "always",
+  "files.exclude": { "**/.modelsim": true },
+  "search.exclude": { "**/.modelsim": true }
+}
